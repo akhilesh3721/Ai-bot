@@ -8,7 +8,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 OWNER_ID = 1365256422585274398
 ALLOWED_CHANNEL_ID = None
-print(client.models.list())
+
 # Gemini
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -100,5 +100,5 @@ User message:
             await message.channel.send(
                 f"❌ Error: {error_text}"
             )
-
+print(client.models.list())
 bot.run(DISCORD_TOKEN)
