@@ -6,6 +6,7 @@ from google import genai
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 OWNER_ID = 1365256422585274398
+ALLOWED_CHANNEL_ID = None
 # Gemini client
 client = genai.Client(api_key=GEMINI_API_KEY)
 
