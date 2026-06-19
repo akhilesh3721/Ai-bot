@@ -37,8 +37,7 @@ async def on_message(message):
         return
     if ALLOWED_CHANNEL_ID is not None and message.channel.id != ALLOWED_CHANNEL_ID:
         return
-    if message.content.startswith("!ai"):
-        prompt = message.content[4:].strip()
+        prompt = message.content.strip()
 
         if not prompt:
             await message.channel.send("Please provide a prompt.")
