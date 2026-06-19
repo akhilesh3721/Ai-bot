@@ -200,10 +200,9 @@ Keep the response concise.
                 result[:2000],
                 mention_author=False
         )
-
-        return
-    except Exception as e:
-      print(f"Vision Error: {e}")
+            return
+        except Exception as e:
+            print(f"Vision Error: {e}")
 
     
 
@@ -262,7 +261,7 @@ Current User:
 
 Username: {username}
 Display Name: {display_name}
-User ID: {user_id}
+User ID: {user_id_num}
 Mentioned Users:{mentioned_text}
 
 Only respond to this user.
