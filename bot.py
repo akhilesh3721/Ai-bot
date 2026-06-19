@@ -35,12 +35,14 @@ async def on_message(message):
         ALLOWED_CHANNEL_ID = None
         await message.channel.send("✅ Channel restriction removed.")
         return
+    print("passed")
     
         prompt = message.content.strip()
 
         if not prompt:
             await message.channel.send("Please provide a prompt.")
             return
+        print("about to call gemini")
 
         try:
             print("Reached gemini")
