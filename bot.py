@@ -308,7 +308,29 @@ Language Rules:
             await message.channel.send(
                 "❌ Something went wrong."
             )
+@bot.command()
+async def image(ctx, *, prompt):
+    try:
+        await ctx.send("🎨 Generating image...")
 
+        image_url = (
+            f"https://image.pollinations.ai/prompt/"
+            f"{prompt.replace(' ', '%20')}"
+        )
+
+        embed = discord.Embed(
+            title="🎨 Generated Image",
+            description=f"Prompt: {prompt}"
+        )
+
+        embed.set_image(url=image_url)
+
+        await ctx.send(embed=embed)
+
+    except Exception as e:
+        await ctx.send(
+            f"❌ Image generation failed: {e}"
+        )
 # =========================
 # START BOT
 # =========================
