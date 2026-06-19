@@ -62,6 +62,7 @@ async def on_message(message):
 
     try:
         print("Reached Gemini")
+        print(client.models.list())
 
         response = client.models.generate_content(
             model="gemini-2.5-flash",
@@ -100,5 +101,5 @@ User message:
             await message.channel.send(
                 f"❌ Error: {error_text}"
             )
-print(client.models.list())
+
 bot.run(DISCORD_TOKEN)
