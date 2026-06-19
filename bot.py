@@ -202,9 +202,8 @@ Keep the response concise.
         )
 
         return
-
     except Exception as e:
-        print(f"Vision Error: {e}")
+      print(f"Vision Error: {e}")
 
     
 
