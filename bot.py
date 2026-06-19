@@ -121,7 +121,7 @@ async def on_message(message):
             )
     mentioned_text = "\n".join(mentioned_users)
     if not mentioned_text:
-    mentioned_text = "None"
+        mentioned_text = "None"
 
     if message.author.bot:
         return
