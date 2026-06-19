@@ -35,8 +35,8 @@ async def on_message(message):
         ALLOWED_CHANNEL_ID = None
         await message.channel.send("✅ Channel restriction removed.")
         return
-    if ALLOWED_CHANNEL_ID is not None and message.channel.id != ALLOWED_CHANNEL_ID:
-        return
+    #if ALLOWED_CHANNEL_ID is not None and message.channel.id != ALLOWED_CHANNEL_ID:
+        #return
         prompt = message.content.strip()
 
         if not prompt:
@@ -44,6 +44,7 @@ async def on_message(message):
             return
 
         try:
+            print("Reached gemini")
             response = client.models.generate_content(
                 model="gemini-2.5-flash",
                 contents=f"""
