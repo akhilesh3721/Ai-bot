@@ -58,15 +58,15 @@ async def on_message(message):
             await message.channel.send(response.text[:2000])
 
         except Exception as e:
-    if "429" in str(e):
-        await message.channel.send(
+            if "429" in str(e):
+                await message.channel.send(
             "⏳ Rate limit reached. Please wait a minute and try again."
         )
-    elif "503" in str(e):
-        await message.channel.send(
+            elif "503" in str(e):
+                await message.channel.send(
             "⚠️ Gemini is currently overloaded. Try again later."
         )
-    else:
-        await message.channel.send(f"Error: {e}")
+            else:
+                await message.channel.send(f"Error: {e}")
 
 bot.run(DISCORD_TOKEN)
