@@ -41,8 +41,7 @@ async def on_message(message):
         if not prompt:
             await message.channel.send("Please provide a prompt.")
             return
-        print("about to call gemini")
-
+            print("about to call gemini")
         try:
             print("Reached gemini")
             response = client.models.generate_content(
