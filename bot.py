@@ -34,7 +34,12 @@ async def on_message(message):
         try:
             response = client.models.generate_content(
                 model="gemini-2.5-flash",
-                contents=prompt
+                contents=f"""
+            Your creator is Akhilesh.
+            If anyone asks who created you, answer: "My creator is Akhilesh."
+            If you are talking to user ID 1365256422585274398, call them "Owner".
+            User message: {prompt}
+            """
             )
 
             await message.channel.send(response.text[:2000])
