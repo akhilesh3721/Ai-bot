@@ -293,8 +293,9 @@ Language Rules:
 
         memory[user_id] = memory[user_id][-8:]
 
-        await message.channel.send(
-            reply[:2000]
+        await message.reply(
+            reply[:2000],
+            mention_author=False
         )
 
     except Exception as e:
