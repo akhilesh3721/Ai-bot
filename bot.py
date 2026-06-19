@@ -148,6 +148,9 @@ async def on_message(message):
         return
 
     prompt = message.content
+    username = message.author.name
+    display_name = message.author.display_name
+    user_id_num = message.author.id
 
     prompt = prompt.replace(
         f"<@{bot.user.id}>",
@@ -195,6 +198,14 @@ Personality:
 - Slightly humorous
 - Natural
 - Casual
+Current User:
+
+Username: {username}
+Display Name: {display_name}
+User ID: {user_id}
+
+Only respond to this user.
+Never confuse them with other users.
 
 Rules:
 - For simple questions, give short answers.
