@@ -114,16 +114,13 @@ async def removechannel(ctx):
 async def on_message(message):
     global ALLOWED_CHANNEL_ID
     mentioned_users = []
-
-for user in message.mentions:
-    if user.id != bot.user.id:
-        mentioned_users.append(
-            f"{user.display_name} ({user.id})"
-        )
-
-mentioned_text = "\n".join(mentioned_users)
-
-if not mentioned_text:
+    for user in message.mentions:
+        if user.id != bot.user.id:
+            mentioned_users.append(
+                f"{user.display_name} ({user.id})"
+            )
+    mentioned_text = "\n".join(mentioned_users)
+    if not mentioned_text:
     mentioned_text = "None"
 
     if message.author.bot:
