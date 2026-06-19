@@ -156,22 +156,22 @@ async def on_message(message):
 
     if not should_reply:
         return
-    
-
-# IMAGE ANALYSIS
+    # IMAGE ANALYSIS
     if message.attachments:
         image_url = message.attachments[0].url
+
         try:
             async with message.channel.typing():
+
                 response = client.chat.completions.create(
                     model="google/gemma-3-27b-it",
                     messages=[
-                    {
-                        "role": "user",
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": """
+                        {
+                            "role": "user",
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": """
 Analyze this image.
 
 If it contains:
@@ -183,26 +183,32 @@ If it contains:
 
 Keep the response concise.
 """
-                            },
-                            {
-                                "type": "image_url",
-                                "image_url": {
-                                    "url": image_url
+                                },
+                                {
+                                    "type": "image_url",
+                                    "image_url": {
+                                        "url": image_url
+                                    }
                                 }
-                            }
-                        ]
-                    }
-                ],
-                max_tokens=500
-            )
+                            ]
+                        }
+                    ],
+                    max_tokens=500
+                )
+
             result = response.choices[0].message.content
+
             await message.reply(
                 result[:2000],
                 mention_author=False
-        )
+            )
+
             return
+
         except Exception as e:
             print(f"Vision Error: {e}")
+
+# 
 
     
 
