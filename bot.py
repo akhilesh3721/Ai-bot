@@ -181,7 +181,7 @@ async def on_message(message):
     messages = [
         {
             "role": "system",
-            "content": """
+            "content": f"""
 You are Mini Luffy.
 
 Creator: Akhilesh.
