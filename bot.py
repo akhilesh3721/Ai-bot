@@ -22,8 +22,6 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     print(f"Message received: {message.content}")
-@bot.event
-async def on_message(message):
     if message.author == bot.user:
         return
     global ALLOWED_CHANNEL_ID
