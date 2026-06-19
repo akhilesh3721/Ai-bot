@@ -30,13 +30,13 @@ async def on_message(message):
         await message.channel.send(
             f"✅ AI channel set to <#{ALLOWED_CHANNEL_ID}>"
         )
-    return
+        return
     if message.content == "!removechannel" and message.author.id == OWNER_ID:
         ALLOWED_CHANNEL_ID = None
-    await message.channel.send("✅ Channel restriction removed.")
-    return
+        await message.channel.send("✅ Channel restriction removed.")
+        return
     if ALLOWED_CHANNEL_ID is not None and message.channel.id != ALLOWED_CHANNEL_ID:
-    return
+        return
     if message.content.startswith("!ai"):
         prompt = message.content[4:].strip()
 
