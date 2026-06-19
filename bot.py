@@ -156,6 +156,57 @@ async def on_message(message):
 
     if not should_reply:
         return
+    if message.attachments:
+
+    image_url = message.attachments[0].url
+
+    await message.channel.typing()
+
+    try:
+        response = client.chat.completions.create(
+            model="google/gemma-3-27b-it",
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": """
+Analyze this image.
+
+If it contains:
+- People: describe appearance and actions.
+- Animals: identify them.
+- Minecraft: identify blocks, mobs and structures.
+- Screenshots: explain what is shown.
+- Text: read and summarize it.
+
+Keep the response concise.
+"""
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": image_url
+                            }
+                        }
+                    ]
+                }
+            ],
+            max_tokens=500
+        )
+
+        result = response.choices[0].message.content
+
+        await message.reply(
+            result[:2000],
+            mention_author=False
+        )
+
+        return
+
+    except Exception as e:
+        print(e)
 
     prompt = message.content
     username = message.author.name
