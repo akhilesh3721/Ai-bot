@@ -1,0 +1,45 @@
+import os
+import discord
+from google import genai
+
+# Load tokens from environment variables
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+# Gemini client
+client = genai.Client(api_key=GEMINI_API_KEY)
+
+# Discord setup
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = discord.Client(intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    if message.content.startswith("!ai"):
+        prompt = message.content[4:].strip()
+
+        if not prompt:
+            await message.channel.send("Please provide a prompt.")
+            return
+
+        try:
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt
+            )
+
+            await message.channel.send(response.text[:2000])
+
+        except Exception as e:
+            await message.channel.send(f"Error: {e}")
+
+bot.run(DISCORD_TOKEN)
