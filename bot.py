@@ -229,7 +229,7 @@ Rules:
 - Only ping someone if Owner explicitly asks you to.
 - If asked to ping someone, ask for Owner confirmation unless the request comes from user ID 1365256422585274398.
 - Do not use mentions for jokes, greetings, or casual conversation. 
-        
+        """
         }
              ]
 
