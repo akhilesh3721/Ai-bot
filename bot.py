@@ -5,7 +5,7 @@ from google import genai
 # Load tokens from environment variables
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
+OWNER_ID = 1365256422585274398
 # Gemini client
 client = genai.Client(api_key=GEMINI_API_KEY)
 
@@ -23,7 +23,19 @@ async def on_ready():
 async def on_message(message):
     if message.author == bot.user:
         return
-
+    global ALLOWED_CHANNEL_ID
+    if message.content == "!setchannel" and message.author.id == OWNER_ID:
+        ALLOWED_CHANNEL_ID = message.channel.id
+        await message.channel.send(
+            f"✅ AI channel set to <#{ALLOWED_CHANNEL_ID}>"
+        )
+    return
+    if message.content == "!removechannel" and message.author.id == OWNER_ID:
+        ALLOWED_CHANNEL_ID = None
+    await message.channel.send("✅ Channel restriction removed.")
+    return
+    if ALLOWED_CHANNEL_ID is not None and message.channel.id != ALLOWED_CHANNEL_ID:
+    return
     if message.content.startswith("!ai"):
         prompt = message.content[4:].strip()
 
