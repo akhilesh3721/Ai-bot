@@ -19,7 +19,9 @@ bot = discord.Client(intents=intents)
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
-
+@bot.event
+async def on_message(message):
+    print(f"Message received: {message.content}")
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
