@@ -35,8 +35,7 @@ async def on_message(message):
         ALLOWED_CHANNEL_ID = None
         await message.channel.send("✅ Channel restriction removed.")
         return
-    print("passed")
-    
+        print("passed")
         prompt = message.content.strip()
 
         if not prompt:
