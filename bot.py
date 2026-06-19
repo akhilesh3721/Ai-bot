@@ -195,10 +195,10 @@ Keep the response concise.
                 ],
                 max_tokens=500
             )
-                result = response.choices[0].message.content
-                await message.reply(
-                    result[:2000],
-                    mention_author=False
+            result = response.choices[0].message.content
+            await message.reply(
+                result[:2000],
+                mention_author=False
         )
 
         return
