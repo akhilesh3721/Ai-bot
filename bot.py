@@ -1,43 +1,28 @@
 import os
-import json
 import discord
 from discord.ext import commands
-from groq import Groq
+from openai import OpenAI
 
 # =========================
 # CONFIG
 # =========================
 
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 OWNER_ID = 1365256422585274398
-MEMORY_FILE = "memory.json"
 
 ALLOWED_CHANNEL_ID = None
+memory = {}
 
 # =========================
-# GROQ
+# OPENROUTER
 # =========================
 
-client = Groq(api_key=GROQ_API_KEY)
-
-# =========================
-# MEMORY
-# =========================
-
-def load_memory():
-    try:
-        with open(MEMORY_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except:
-        return {}
-
-def save_memory():
-    with open(MEMORY_FILE, "w", encoding="utf-8") as f:
-        json.dump(memory, f, indent=2)
-
-memory = load_memory()
+client = OpenAI(
+    api_key=OPENROUTER_API_KEY,
+    base_url="https://openrouter.ai/api/v1"
+)
 
 # =========================
 # DISCORD
@@ -72,13 +57,13 @@ async def ping(ctx):
 async def help(ctx):
     await ctx.send(
         """
-📖 Commands
+📖 Mini Luffy Commands
 
 !ping
 !help
 !clearmemory
 
-Owner Only:
+Owner:
 !setchannel
 !removechannel
 
@@ -92,9 +77,8 @@ async def clearmemory(ctx):
 
     if user_id in memory:
         del memory[user_id]
-        save_memory()
 
-    await ctx.send("🧠 Your memory has been cleared.")
+    await ctx.send("🧠 Memory cleared.")
 
 @bot.command()
 async def setchannel(ctx):
@@ -135,7 +119,6 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-    # Channel lock
     if (
         ALLOWED_CHANNEL_ID is not None
         and message.channel.id != ALLOWED_CHANNEL_ID
@@ -166,7 +149,6 @@ async def on_message(message):
 
     prompt = message.content
 
-    # Remove mention text
     prompt = prompt.replace(
         f"<@{bot.user.id}>",
         ""
@@ -194,7 +176,7 @@ async def on_message(message):
         }
     )
 
-    memory[user_id] = memory[user_id][-20:]
+    memory[user_id] = memory[user_id][-8:]
 
     messages = [
         {
@@ -207,18 +189,21 @@ Your creator is Akhilesh.
 If anyone asks who created you:
 "My creator is Akhilesh."
 
-If talking to user ID {OWNER_ID},
-call them Owner.
+Current user:
+Username: {message.author.name}
+User ID: {message.author.id}
+
+Only call user ID {OWNER_ID} Owner.
+
+Never confuse users.
 
 Personality:
 - Friendly
 - Talkative
 - Helpful
-- Slightly sarcastic
 - Funny
-- Uses emojis occasionally
-- Remembers previous messages
-- Explains things clearly
+- Slightly sarcastic
+- Uses emojis naturally
 
 Keep replies under 1500 characters.
 """
@@ -231,9 +216,10 @@ Keep replies under 1500 characters.
         async with message.channel.typing():
 
             chat = client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
+                model="deepseek/deepseek-chat",
                 messages=messages,
-                temperature=0.8
+                temperature=0.8,
+                max_tokens=1000
             )
 
             reply = chat.choices[0].message.content
@@ -248,20 +234,25 @@ Keep replies under 1500 characters.
             }
         )
 
-        memory[user_id] = memory[user_id][-20:]
-
-        save_memory()
+        memory[user_id] = memory[user_id][-8:]
 
         await message.channel.send(
             reply[:2000]
         )
 
     except Exception as e:
-        print(f"ERROR: {e}")
+        error_text = str(e)
 
-        await message.channel.send(
-            f"❌ Error: {str(e)[:1800]}"
-        )
+        print(error_text)
+
+        if "rate_limit" in error_text.lower():
+            await message.channel.send(
+                "⏳ API rate limit reached. Try again later."
+            )
+        else:
+            await message.channel.send(
+                "❌ Something went wrong."
+            )
 
 # =========================
 # START BOT
