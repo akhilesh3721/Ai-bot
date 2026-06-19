@@ -2,7 +2,8 @@ import os
 import discord
 from discord.ext import commands
 from openai import OpenAI
-
+import base64
+import requests
 # =========================
 # CONFIG
 # =========================
