@@ -159,15 +159,13 @@ async def on_message(message):
     
 
 # IMAGE ANALYSIS
-if message.attachments:
-    image_url = message.attachments[0].url
-
-    try:
-        async with message.channel.typing():
-
-            response = client.chat.completions.create(
-                model="google/gemma-3-27b-it",
-                messages=[
+    if message.attachments:
+        image_url = message.attachments[0].url
+        try:
+            async with message.channel.typing():
+                response = client.chat.completions.create(
+                    model="google/gemma-3-27b-it",
+                    messages=[
                     {
                         "role": "user",
                         "content": [
@@ -199,7 +197,6 @@ Keep the response concise.
             )
 
         result = response.choices[0].message.content
-
         await message.reply(
             result[:2000],
             mention_author=False
