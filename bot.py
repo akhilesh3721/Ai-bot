@@ -332,7 +332,7 @@ Language Rules:
         }
     )
 
-    messages.extend(memory[user_id])
+    
 
     try:
         async with message.channel.typing():
@@ -355,7 +355,7 @@ Language Rules:
     reply
         )
 
-        memory[user_id] = memory[user_id][-8:]
+    
 
         await message.reply(
             reply[:2000],
