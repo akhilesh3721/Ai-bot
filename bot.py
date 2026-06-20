@@ -106,7 +106,16 @@ async def removechannel(ctx):
     await ctx.send(
         "✅ Channel restriction removed."
     )
+from memory import save_memory
 
+@bot.command()
+async def remember(ctx, *, text):
+    save_memory(
+        ctx.author.id,
+        ctx.author.name,
+        text
+    )
+    await ctx.send("Saved!")
 # =========================
 # AI CHAT
 # =========================
