@@ -14,7 +14,7 @@ OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OWNER_ID = 1365256422585274398
 
 ALLOWED_CHANNEL_ID = None
-memory = {}
+
 
 # =========================
 # OPENROUTER
@@ -323,14 +323,7 @@ Language Rules:
         """
         }
              ]
-    past_memories = get_memory(user_id)
-    for m in reversed(past_memories):
-        messages.append(
-        {
-            "role": "user",
-            "content": m["message"]
-        }
-    )
+    past_memories = []
     messages.append(
     {
         "role": "user",
