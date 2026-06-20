@@ -331,6 +331,12 @@ Language Rules:
             "content": m["message"]
         }
     )
+    messages.append(
+    {
+        "role": "user",
+        "content": prompt
+    }
+    )
 
     
 
@@ -350,7 +356,7 @@ Language Rules:
             reply = "I couldn't think of a response."
 
         save_memory(
-    "bot",
+    user_id,
     "Mini Luffy",
     reply
         )
