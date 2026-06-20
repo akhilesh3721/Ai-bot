@@ -106,7 +106,7 @@ async def removechannel(ctx):
     await ctx.send(
         "✅ Channel restriction removed."
     )
-from memory import save_memory
+from memory import save_memory, get_memory
 
 @bot.command()
 async def remember(ctx, *, text):
@@ -242,18 +242,20 @@ Keep the response concise.
         prompt = "Hello"
 
     user_id = str(message.author.id)
-
-    if user_id not in memory:
-        memory[user_id] = []
-
-    memory[user_id].append(
-        {
-            "role": "user",
-            "content": prompt
-        }
+    save_memory(
+    message.author.id,
+    message.author.name,
+    prompt
     )
 
-    memory[user_id] = memory[user_id][-8:]
+    past_memories = get_memory(user_id)
+    for m in reversed(past_memories):
+        messages.append(
+        {
+            "role": "user",
+            "content": m["message"]
+        }
+    )
 
     messages = [
         {
@@ -346,11 +348,10 @@ Language Rules:
         if not reply:
             reply = "I couldn't think of a response."
 
-        memory[user_id].append(
-            {
-                "role": "assistant",
-                "content": reply
-            }
+        save_memory(
+    "bot",
+    "Mini Luffy",
+    reply
         )
 
         memory[user_id] = memory[user_id][-8:]
