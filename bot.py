@@ -248,14 +248,7 @@ Keep the response concise.
     prompt
     )
 
-    past_memories = get_memory(user_id)
-    for m in reversed(past_memories):
-        messages.append(
-        {
-            "role": "user",
-            "content": m["message"]
-        }
-    )
+    
 
     messages = [
         {
@@ -330,6 +323,14 @@ Language Rules:
         """
         }
              ]
+    past_memories = get_memory(user_id)
+    for m in reversed(past_memories):
+        messages.append(
+        {
+            "role": "user",
+            "content": m["message"]
+        }
+    )
 
     messages.extend(memory[user_id])
 
