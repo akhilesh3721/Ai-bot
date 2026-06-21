@@ -323,7 +323,8 @@ Language Rules:
         """
         }
              ]
-    past_memories = []
+    past_memories = get_memory(user_id)
+    print("Loaded memories:", past_memories)
     messages.append(
     {
         "role": "user",
