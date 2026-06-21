@@ -325,12 +325,22 @@ Language Rules:
              ]
     past_memories = get_memory(user_id)
     print("Loaded memories:", past_memories)
-    messages.append(
-    {
-        "role": "user",
-        "content": prompt
-    }
+    memory_text = "\n".join(
+    [m["message"] for m in past_memories[-20:]]
     )
+    messages.append(
+        {
+    "role": "system",
+    "content": f"Previous memories:\n{memory_text}"
+        }
+    )
+
+messages.append(
+{
+    "role": "user",
+    "content": prompt
+}
+)
 
     
 
