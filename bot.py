@@ -106,7 +106,7 @@ async def removechannel(ctx):
     await ctx.send(
         "✅ Channel restriction removed."
     )
-#from memory import save_memory, get_memory
+from memory import save_memory, get_memory
 
 @bot.command()
 async def remember(ctx, *, text):
