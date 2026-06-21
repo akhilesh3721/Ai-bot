@@ -334,13 +334,12 @@ Language Rules:
     "content": f"Previous memories:\n{memory_text}"
         }
     )
-
-messages.append(
-{
+    messages.append(
+        {
     "role": "user",
     "content": prompt
-}
-)
+        }
+    )
 
     
 
