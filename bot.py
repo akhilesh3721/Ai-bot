@@ -242,6 +242,7 @@ Keep the response concise.
         prompt = "Hello"
 
     user_id = str(message.author.id)
+    is_owner = message.author.id == OWNER_ID
     if any(
     x in prompt.lower()
     for x in [
@@ -258,7 +259,7 @@ Keep the response concise.
         message.author.name,
         prompt
     )
-    is_owner = message.author.id == OWNER_ID
+    
 
     
 
