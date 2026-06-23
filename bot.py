@@ -244,21 +244,21 @@ Keep the response concise.
     user_id = str(message.author.id)
     is_owner = message.author.id == OWNER_ID
     if any(
-    x in prompt.lower()
-    for x in [
-        "my favourite",
-        "my favorite",
-        "i like",
-        "i am",
-        "i'm",
-        "remember"
-    ]
-):
-    save_memory(
-        message.author.id,
-        message.author.name,
-        prompt
-    )
+        x in prompt.lower()
+        for x in [
+            "my favourite",
+            "my favorite",
+            "i like",
+            "i am",
+            "i'm",
+            "remember"
+        ]
+    ):
+        save_memory(
+            message.author.id,
+            message.author.name,
+            prompt
+        )
     
 
     
@@ -362,24 +362,20 @@ If you already used a response style recently, choose a different one.
     [m["message"] for m in past_memories[-20:]]
     )
     recent_messages = []
-
-async for msg in message.channel.history(limit=10):
-    if msg.author.bot:
-        role = "assistant"
-    else:
-        role = "user"
-
-    if msg.content.strip():
-        recent_messages.append(
-            {
-                "role": role,
-                "content": msg.content[:500]
-            }
-        )
-
-recent_messages.reverse()
-
-messages.extend(recent_messages)
+    async for msg in message.channel.history(limit=10):
+        if msg.author.bot:
+            role = "assistant"
+        else:
+            role = "user"
+        if msg.content.strip():
+            recent_messages.append(
+                {
+                    "role": role,
+                    "content": msg.content[:500]
+                }
+            )
+            recent_messages.reverse()
+            messages.extend(recent_messages)
     messages.append(
         {
     "role": "system",
