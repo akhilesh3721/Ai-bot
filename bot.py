@@ -361,6 +361,25 @@ If you already used a response style recently, choose a different one.
     memory_text = "\n".join(
     [m["message"] for m in past_memories[-20:]]
     )
+    recent_messages = []
+
+async for msg in message.channel.history(limit=10):
+    if msg.author.bot:
+        role = "assistant"
+    else:
+        role = "user"
+
+    if msg.content.strip():
+        recent_messages.append(
+            {
+                "role": role,
+                "content": msg.content[:500]
+            }
+        )
+
+recent_messages.reverse()
+
+messages.extend(recent_messages)
     messages.append(
         {
     "role": "system",
