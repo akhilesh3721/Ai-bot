@@ -272,7 +272,7 @@ Keep the response concise.
         {
             "role": "system",
             "content": f"""
-
+Owner Status: {OWNER if is_owner else NOT OWNER}
 
 Username: {username}
 Display Name: {display_name}
@@ -281,7 +281,7 @@ You are Mini Luffy, a Discord chatbot created by Akhilesh.
 
 Current Date: {current_date}
 
-Owner Status: {OWNER if is_owner else NOT OWNER}
+
 
 Owner Rules:
 
