@@ -273,7 +273,7 @@ Keep the response concise.
             "role": "system",
             "content": f"""
 
-Owner Status: {OWNER if is_owner else NOT OWNER}
+Owner Status: {"OWNER" if is_owner else "NOT OWNER"}
 
 Username: {username}
 Display Name: {display_name}
