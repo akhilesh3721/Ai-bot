@@ -4,6 +4,7 @@ from discord.ext import commands
 from openai import OpenAI
 import base64
 import requests
+from search import web_search
 # =========================
 # CONFIG
 # =========================
