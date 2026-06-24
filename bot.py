@@ -241,6 +241,22 @@ Keep the response concise.
 
     if prompt == "":
         prompt = "Hello"
+
+
+    web_results = ""
+    if any(
+        x in prompt.lower()
+        for x in [
+            "latest",
+            "today",
+            "news",
+            "price",
+            "weather",
+            "current",
+            "who won"
+        ]
+    ):
+    web_results = web_search(prompt)
     from datetime import datetime
     current_date = datetime.now().strftime("%d %B %Y")
 
@@ -357,6 +373,13 @@ Important:
         {
     "role": "system",
     "content": f"Previous memories:\n{memory_text}"
+        }
+    )
+    if web_results:
+    messages.append(
+        {
+            "role": "system",
+            "content": f"Web Search Results:\n{web_results}"
         }
     )
     messages.append(
