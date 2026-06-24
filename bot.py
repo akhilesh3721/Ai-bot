@@ -265,12 +265,11 @@ Keep the response concise.
     print(
     f"Author={message.author.id} OWNER_ID={OWNER_ID} Owner={is_owner}"
     )
-    
-        save_memory(
-            message.author.id,
-            message.author.name,
-            prompt
-        )
+    save_memory(
+        message.author.id,
+        message.author.name,
+        prompt
+    )
     
 
     
