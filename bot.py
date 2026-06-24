@@ -256,7 +256,7 @@ Keep the response concise.
             "who won"
         ]
     ):
-    web_results = web_search(prompt)
+        web_results = web_search(prompt)
     from datetime import datetime
     current_date = datetime.now().strftime("%d %B %Y")
 
@@ -376,12 +376,12 @@ Important:
         }
     )
     if web_results:
-    messages.append(
-        {
-            "role": "system",
-            "content": f"Web Search Results:\n{web_results}"
-        }
-    )
+        messages.append(
+            {
+                "role": "system",
+                "content": f"Web Search Results:\n{web_results}"
+            }
+        )
     messages.append(
         {
     "role": "user",
