@@ -384,7 +384,7 @@ Important:
                 model="deepseek/deepseek-chat",
                 messages=messages,
                 temperature=0.6,
-                max_tokens=200
+                max_tokens=80
             )
 
             reply = chat.choices[0].message.content
