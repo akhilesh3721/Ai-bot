@@ -265,17 +265,7 @@ Keep the response concise.
     print(
     f"Author={message.author.id} OWNER_ID={OWNER_ID} Owner={is_owner}"
     )
-    if any(
-        x in prompt.lower()
-        for x in [
-            "my favourite",
-            "my favorite",
-            "i like",
-            "i am",
-            "i'm",
-            "remember"
-        ]
-    ):
+    
         save_memory(
             message.author.id,
             message.author.name,
@@ -406,11 +396,11 @@ Important:
         if not reply:
             reply = "I couldn't think of a response."
 
-        #save_memory(
-    #user_id,
-    #"Mini Luffy",
-    #reply
-       # )
+        save_memory(
+    user_id,
+    "Mini Luffy",
+    reply
+        )
 
     
 
