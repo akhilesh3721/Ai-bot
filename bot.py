@@ -392,11 +392,11 @@ Important:
         if not reply:
             reply = "I couldn't think of a response."
 
-        save_memory(
-    user_id,
-    "Mini Luffy",
-    reply
-        )
+        #save_memory(
+    #user_id,
+    #"Mini Luffy",
+    #reply
+       # )
 
     
 
