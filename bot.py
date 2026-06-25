@@ -361,7 +361,7 @@ Important:
     past_memories = get_memory(user_id)
     print("Loaded memories:", past_memories)
     memory_text = "\n".join(
-    [m["message"] for m in past_memories[-20:]]
+    [m["message"] for m in past_memories[-5:]]
     )
     
     messages.append(
@@ -393,7 +393,7 @@ Important:
                 model="deepseek/deepseek-chat",
                 messages=messages,
                 temperature=0.6,
-                max_tokens=80
+                max_tokens=500
             )
 
             reply = chat.choices[0].message.content
@@ -425,7 +425,7 @@ Important:
             )
         else:
             await message.channel.send(
-                "❌ Something went wrong."
+                "❌ Something went wrong ai oombi ."
             )
 @bot.command()
 async def image(ctx, *, prompt):
