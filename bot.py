@@ -25,7 +25,7 @@ OWNER_ID = 1365256422585274398
 ALLOWED_CHANNEL_ID = None
 
 BLOCKLIST_FILE = "blocked_users.json"
-BLOCKED_MESSAGE = "🚫 You've been blocked from using this bot."  # <-- customize this line
+BLOCKED_MESSAGE = "your blocked from using mini luffy oombu  thx"  # <-- customize this line
 
 MEMORY_LIMIT = 3            # past user memories to include
 MEMORY_CHAR_CAP = 300
@@ -473,7 +473,7 @@ async def on_message(message):
         if "rate_limit" in str(e).lower():
             await message.channel.send("⏳ API rate limit reached. Try again later.")
         else:
-            await message.channel.send("❌ Something went wrong ai oombi.")
+            await message.channel.send("❌ Something went wrong ")
 
 # =========================
 # START BOT
