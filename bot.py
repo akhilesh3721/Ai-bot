@@ -105,7 +105,7 @@ client = OpenAI(api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/
 
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix="!", intents=intents, help_command=None)
+bot = commands.Bot(command_prefix=",", intents=intents, help_command=None)
 
 # =========================
 # LLM CALL WITH FALLBACK
