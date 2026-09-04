@@ -156,10 +156,10 @@ async def ping(ctx):
 async def help(ctx):
     await ctx.send(
         "📖 Mini Luffy Commands\n\n"
-        "!ping, !help, !clearmemory, !remember <text>, !image <prompt>\n"
-        "!summarize [count], !remindme <time> <text>\n"
-        "!8ball <question>, !roast @user, !ship @user1 @user2\n\n"
-        "Owner: !setchannel, !removechannel, !stats, !block <@user|user_id>, !unblock <@user|user_id>, !blocklist, !leaveall [confirm]\n\n"
+        "ping, help, clearmemory, remember <text>, image <prompt>\n"
+        "summarize [count], remindme <time> <text>\n"
+        "8ball <question>, roast @user, ship @user1 @user2\n\n"
+        "Owner: setchannel, removechannel, stats, block <@user|user_id>, unblock <@user|user_id>, blocklist, leaveall [confirm]\n\n"
         "Mention me or reply to me to chat."
     )
 
