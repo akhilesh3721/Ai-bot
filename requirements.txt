@@ -5,3 +5,4 @@ supabase
 tavily-python
 yt-dlp
 PyNaCl
+davey
