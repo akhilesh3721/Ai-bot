@@ -3,3 +3,5 @@ openai
 requests
 supabase
 tavily-python
+yt-dlp
+PyNaCl
